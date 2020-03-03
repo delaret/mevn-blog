@@ -1,29 +1,29 @@
 <template>
     <div class="posts">
-        <h1>Посты</h1>
-        Здесь перечислены все сообщения
-        <div v-if='posts.length > 0' class="table-wrap">
+        <h1>Posts</h1>
+        <div v-if="posts.length > 0" class="table-wrap">
            <div>
-               <router-link :to="{ name: 'addpost' }" class="">Добавить пост</router-link>
+               <router-link :to="{ name: 'addpost' }" class="">Add Post</router-link>
            </div>
            <table>
                <tr>
-                   <td>Название</td>
-                   <td width="550">Описание</td>
-                   <td width="100" align="center">Действие</td>
+                   <td>Title</td>
+                   <td width="550">Description</td>
+                   <td width="100" align="center">Action</td>
                </tr>
-               <v-for="post_in_posts" :key="post.id">
+               <tr v-for="post in posts" :key="post.id">
                    <td>{{ post.title }}</td>
                    <td>{{ post.description }}</td>
                    <td align="center">
-                       <router-link :to="{ name: 'editpost', params: { id: post._id } }">Редактировать</router-link>
-                       <a href="#" @click="deletePost(post._id)">Удалить</a>
+                       <router-link :to="{ name: 'editpost', params: { id: post._id } }">Edit</router-link>
+                       <a href="#" @click="deletePost(post._id)">Delete</a>
                    </td>
+               </tr>
            </table>
         </div>
         <div v-else>
-            Надо добавить хотя-бы один пост <br/><br/>
-            <router-link :to="{ name: 'addpost' }" class="add_post_link">Добавить пост</router-link>
+            There are no posts.. Lets add one now <br/><br/>
+            <router-link :to="{ name: 'addpost' }" class="add_post_link">Add Post</router-link>
         </div>
     </div>
 </template>
@@ -49,14 +49,14 @@ export default {
         async deletePost(id) {
             const $this = this
             $this.$swal({
-                title:'Вы уверены?',
-                text: 'Это действие нельзя будет отменить!',
+                title:'Are you sure?',
+                text: 'You won`t be able to revert this!',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Да, удалить'
-            }). then(function() {
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function() {
                 PostsService.deletePost(id)
                 $this.$router.go({
                     path:'/'

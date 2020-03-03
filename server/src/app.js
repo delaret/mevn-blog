@@ -10,14 +10,6 @@ const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
-app.get('/posts',(req, res) => {
-    res.send(
-        [{
-            title: "Hello world!",
-            description: "Привет! Как дела?"
-        }]
-    )
-})
 
 //коннект к базе
 const db = mongodb_conn_module.connect();

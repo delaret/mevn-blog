@@ -1,15 +1,15 @@
 <template>
     <div class="posts">
-        <h1>Редактировать пост</h1>
+        <h1>Edit Post</h1>
         <div class="form">
             <div>
-                <input type="text" name="title" placeholder="Название" v-model="Название">
+                <input type="text" name="title" placeholder="TITLE" v-model="title">
             </div>
             <div>
-                <textarea rows="15" cols="15" placeholder="Описание" v-model="Описание"></textarea>
+                <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
             </div>
             <div>
-                <button class="app_post_btn" @click="updatePost">Редактировать</button>
+                <button class="app_post_btn" @click="updatePost">Update</button>
             </div>
         </div>
     </div>
@@ -25,6 +25,9 @@ export default {
             title: '',
             description: ''
         }
+    },
+    mounted() {
+        this.getPost()
     },
     methods: {
         async getPost() {
@@ -42,8 +45,9 @@ export default {
                 description: this.description
             })
             this.$swal(
-                'Великолепно!',
-                'Ваш пост обновлен!'
+                'Great!',
+                'Your post has been updated!',
+                'success'
             )
             this.$router.push({ name: 'Posts' })
         }

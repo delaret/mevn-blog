@@ -1,15 +1,15 @@
 <template>
     <div class="posts">
-        <h1>Добавить пост</h1>
+        <h1>Add Post</h1>
         <div class="form">
             <div>
-                <input type="text" name="title" placeholder="Название" v-model="Название">
+                <input type="text" name="title" placeholder="TITLE" v-model="title">
             </div>
             <div>
-                <textarea rows="15" cols="15" placeholder="Описание" v-model="Описание"></textarea>
+                <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
             </div>
             <div>
-                <button class="app_post_btn" @click="addPost">Добавить</button>
+                <button class="app_post_btn" @click="addPost">Add</button>
             </div>
         </div>
     </div>
@@ -33,8 +33,9 @@ export default {
                 description: this.description
             })
             this.$swal(
-                'Великолепно!', 
-                'Ваш пост добавлен!'
+                'Great!', 
+                'Your post has been added!',
+                'success'
             )
             this.$router.push({ name: 'Posts' })
         }
